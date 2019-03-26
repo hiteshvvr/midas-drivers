@@ -81,6 +81,11 @@
 #define V1720_ALIGN64                           0x20
 #define V1720_DONE                                 0
 
+#define V1720_MON_TRIGGER_MAJORITY                  0X0000
+#define V1720_MON_TEST_MODE                         0x0001
+#define V1720_MON_BUFFER_OCC_MODE                   0X0003
+#define V1720_MON_VOLTAGE_MODE                      0X0004
+
 #endif  //  V1720_INCLUDE_H
 
 
