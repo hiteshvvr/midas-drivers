@@ -311,7 +311,7 @@ void  v1720_Status(MVME_INTERFACE *mvme, uint32_t base)
     printf("================================================\n");
 }
 
-void  v1720_SingleTrigger(MVME_INTERFACE *mvme, uint32_t base)
+void  v1720_SendSoftTrigger(MVME_INTERFACE *mvme, uint32_t base)
 {
     regWrite(mvme, base, V1720_SW_TRIGGER,  0x01);
 }
@@ -383,14 +383,18 @@ int  v1720_Setup(MVME_INTERFACE *mvme, uint32_t base, int mode)
             printf("--------------------------------------------\n");
             printf("Trigger from FP, Nch, 1Ks, postTrigger 800\n");
             printf("--------------------------------------------\n");
-            regWrite(mvme, base, V1720_BUFFER_ORGANIZATION,  0x09);    // 1K buffer
-            /* regWrite(mvme, base, V1720_TRIG_SRCE_EN_MASK,    0x40000000);   // External Trigger */
-            regWrite(mvme, base, V1720_TRIG_SRCE_EN_MASK,    0x00000010);   // Trigger by 5th channel */
-            //    regWrite(mvme, base, V1720_CHANNEL_EN_MASK,      0xF);    // 8ch enable
-            regWrite(mvme, base, V1720_CHANNEL_EN_MASK,      0x1F);    // 8ch enable
-            //    regWrite(mvme, base, V1720_CHANNEL_EN_MASK,      0x1);    // 8ch enable
-            regWrite(mvme, base, V1720_POST_TRIGGER_SETTING, 150);     // PreTrigger (1K-800)
-            regWrite(mvme, base, V1720_ACQUISITION_CONTROL,   0x00);   // Reset Acq Control
+            regWrite(mvme, base, V1720_BUFFER_ORGANIZATION,  0x0A);                  // 1K buffer
+            regWrite(mvme, base, V1720_TRIG_SRCE_EN_MASK,    0x80000000);            // Software Trigger
+            regWrite(mvme, base, V1720_CHANNEL_EN_MASK,      0x01);                  // 1st Channel Enable
+            regWrite(mvme, base, V1720_MONITOR_MODE, V1720_MON_VOLTAGE_MODE);        // Set MON to voltage mode
+            regWrite(mvme, base, V1720_POST_TRIGGER_SETTING, 150);                   // PreTrigger (1K-800)
+            regWrite(mvme, base, V1720_ACQUISITION_CONTROL,   0x00);                 // Reset Acq Control
+
+
+            /* regWrite(mvme, base, V1720_TRIG_SRCE_EN_MASK,    0x40000000);         // External Trigger */
+            /* regWrite(mvme, base, V1720_TRIG_SRCE_EN_MASK,    0x00000010);         // Trigger by 5th channel |)}># */
+            //    regWrite(mvme, base, V1720_CHANNEL_EN_MASK,      0xF);             // 8ch enable
+            //    regWrite(mvme, base, V1720_CHANNEL_EN_MASK,      0x1);             // 8ch enable
             printf("\n");
             break;
         default:

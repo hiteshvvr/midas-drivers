@@ -44,7 +44,7 @@ uint32_t v1720_ChannelGet(MVME_INTERFACE *mvme, uint32_t base, uint32_t channel,
 void     v1720_ChannelConfig(MVME_INTERFACE *mvme, uint32_t base, uint32_t operation);
 void     v1720_Align64Set(MVME_INTERFACE *mvme, uint32_t base);
 
-void     v1720_SingleTrigger(MVME_INTERFACE *mvme, uint32_t a32base);
+void     v1720_SendSoftTrigger(MVME_INTERFACE *mvme, uint32_t a32base);
 void     v1720_SetMonitorMode(MVME_INTERFACE *mvme, uint32_t a32base, int mode);
 void     v1720_SetMonitorVoltageValue(MVME_INTERFACE *mvme, uint32_t a32base, int value);
 
