@@ -47,5 +47,6 @@ void     v1720_Align64Set(MVME_INTERFACE *mvme, uint32_t base);
 void     v1720_SendSoftTrigger(MVME_INTERFACE *mvme, uint32_t a32base);
 void     v1720_SetMonitorMode(MVME_INTERFACE *mvme, uint32_t a32base, int mode);
 void     v1720_SetMonitorVoltageValue(MVME_INTERFACE *mvme, uint32_t a32base, int value);
+void     v1720_SetEventSize(MVME_INTERFACE *mvme, uint32_t a32base, int size);
 
 #endif // v1720DRV_INCLUDE_H
